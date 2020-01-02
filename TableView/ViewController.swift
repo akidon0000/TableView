@@ -59,17 +59,58 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 //    }
     
 //カスタマイズしたい時
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 50))
-        label.text = "タイトル"
-        label.textAlignment = NSTextAlignment.center     //文字位置変更[.right][.center][.left]
-        label.font = UIFont.italicSystemFont(ofSize: 21) //文字サイズ変更
-        label.backgroundColor = UIColor.red              //背景色変更
-        label.textColor =  UIColor.white                 //文字色変更
-        return label
+//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 50))
+//        label.text = "第\(section)セクション"
+//        label.textAlignment = NSTextAlignment.center     //文字位置変更[.right][.center][.left]
+//        label.font = UIFont.italicSystemFont(ofSize: 21) //文字サイズ変更
+//        label.backgroundColor = UIColor.red              //背景色変更
+//        label.textColor =  UIColor.white                 //文字色変更
+//        return label
+//    }
+    @objc func buttonTapped(sender:UIButton ,section:Int){
+        print(section)
     }
     
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        //let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 18))
+        let view = UIView(frame: CGRect.zero)
+        let label = UILabel(frame: CGRect(x:0, y:0, width: tableView.bounds.width, height: 50))
+        label.text = "第\(section)セクション"
+        label.textAlignment = NSTextAlignment.center     //文字位置変更[.right][.center][.left]
+        label.font = UIFont.italicSystemFont(ofSize: 21) //文字サイズ変更
+        label.backgroundColor = UIColor.gray              //背景色変更
+        label.textColor =  UIColor.black                 //文字色変更
+        
+        let button = UIButton(frame: CGRect(x:self.view.frame.maxX - 50, y:0, width:50, height: 50))
+        button.setTitle("追加", for: .normal)
+        //buttonがタップされた際のコード　(buttonTappedはタップされた際に呼び出される関数)
+        button.addTarget(self, action: #selector(ViewController.buttonTapped(sender: section:)), for: .touchUpInside)
+        button.backgroundColor = UIColor.black
+        
+        //セクションバーの上にあるviewに加える（add）
+        view.addSubview(label)
+        view.addSubview(button)
+        return view
+    }
+    
+    
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        switch(indexPath.section) {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "row1") as! UITableViewCell;
+            return cell
+        case 1:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "row2") as! UITableViewCell;
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "row1") as! UITableViewCell;
+            return cell
+        }
+    }
     
     
     
