@@ -8,21 +8,26 @@
 
 //  AddController.swift
 import UIKit
-
 //配列の設置
-var Contents:[String] = []
+var sectionTitles:[String] = []
+var sectionNum = 0
 
 class AddController: UIViewController {
-    //テキストフィールドの設定
     @IBOutlet weak var TodoTextField: UITextField!
     @IBAction func TodoAddButten(_ sender: Any) {
         //配列に入力内容を入れる
-        Contents.append(TodoTextField.text!)
+        //contents.append([])
+        //contents[sectionNum].append(TodoTextField.text!)
+        sectionTitles.append(TodoTextField.text!)
+        
         //追加ボタンを押したらフィールドを空にする
         TodoTextField.text = ""
         
+        //セクションの数を１つ増やす。
+        sectionNum += 1
+        
         //変数の中身をUDに追加 アプリを落としても記憶する
-        UserDefaults.standard.set( Contents, forKey: "TodoList" )
+        UserDefaults.standard.set(sectionTitles, forKey: "sctionTitles" )
     }
 
     //最初からあるコード

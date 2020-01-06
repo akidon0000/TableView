@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE53C7AA23C317E800C5ACC2 /* CellAddController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE53C7A923C317E800C5ACC2 /* CellAddController.swift */; };
 		CEF80FB123B787EB00439272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80FB023B787EB00439272 /* AppDelegate.swift */; };
 		CEF80FB323B787EB00439272 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80FB223B787EB00439272 /* SceneDelegate.swift */; };
 		CEF80FB523B787EB00439272 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF80FB423B787EB00439272 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE53C7A923C317E800C5ACC2 /* CellAddController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAddController.swift; sourceTree = "<group>"; };
 		CEF80FAD23B787EB00439272 /* TableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEF80FB023B787EB00439272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEF80FB223B787EB00439272 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				CEF80FB223B787EB00439272 /* SceneDelegate.swift */,
 				CEF80FB423B787EB00439272 /* ViewController.swift */,
 				CEF80FC823B84F7A00439272 /* AddController.swift */,
+				CE53C7A923C317E800C5ACC2 /* CellAddController.swift */,
 				CEF80FB623B787EB00439272 /* Main.storyboard */,
 				CEF80FB923B787EE00439272 /* Assets.xcassets */,
 				CEF80FBB23B787EE00439272 /* LaunchScreen.storyboard */,
@@ -143,6 +146,7 @@
 			files = (
 				CEF80FB523B787EB00439272 /* ViewController.swift in Sources */,
 				CEF80FB123B787EB00439272 /* AppDelegate.swift in Sources */,
+				CE53C7AA23C317E800C5ACC2 /* CellAddController.swift in Sources */,
 				CEF80FB323B787EB00439272 /* SceneDelegate.swift in Sources */,
 				CEF80FC923B84F7A00439272 /* AddController.swift in Sources */,
 			);
