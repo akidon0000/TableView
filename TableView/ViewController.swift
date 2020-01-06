@@ -11,9 +11,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var TableView: UITableView!
     
     @IBAction func clear(_ sender: Any) {
-        UserDefaults.standard.removeObject(forKey: "TodoList")
-        contents.removeAll()
-        sectionNum = 0
+//        UserDefaults.standard.removeObject(forKey: "TodoList")
+//        contents.removeAll()
+//        sectionTitles.removeAll()
+//        sectionNum = 0
+//        cellNum = 0
+        cellNum += 1
         /*
          TableViewをリロードするメソッド
          */
@@ -34,7 +37,21 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     セクション内のセル数を決めるメソッド（＊＊必須＊＊）
      */
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellNum
+        if section == 0 {
+            print("section == 0 threw")
+            return cellList[Int(section)].count
+        } else if section == 1 {
+            print("section == 1 threw")
+            return cellList[Int(section)].count
+        } else {
+            return 0
+        }
+//        if cellList.isEmpty{
+//            return 0
+//        }else{
+//            print(section)
+//            return cellList[Int(section)].count
+//        }
     }
 
     /*
@@ -43,9 +60,47 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let TodoCell : UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "TodoCell", for: indexPath)
         //TodoCell.textLabel!.text = contents[0]//[indexPath.row]
-        TodoCell.textLabel!.text = cellList[0][indexPath.row]
+        
+        print(cellList)
+        print("indexPath.section" + String(indexPath.section))
+        //print("cellNum" + String(cellNum))
+        
+        if indexPath.section == 0{ //sender1 == 0 {
+            print("0000000indexPath.item" + String(indexPath.item) + "cellNum" + String(cellNum) + "sender1" + String(sender1))
+            TodoCell.textLabel!.text = cellList[0][Int(indexPath.item)]//cellList[sender1][Int(indexPath.item)]
+        } else if indexPath.section == 1{
+            print("1111111indexPath.item" + String(indexPath.item) + "cellNum" + String(cellNum) + "sender1" + String(sender1))
+            TodoCell.textLabel!.text = cellList[1][Int(indexPath.item)]
+        }
+        
+        //TodoCell.textLabel!.text = cellList[Int(indexPath.section)][Int(indexPath.item)]
+        //TodoCell.textLabel!.text = cellList[0][0]
         return TodoCell
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     /*
     セルの高さを決めるメソッド
@@ -76,7 +131,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     
     @objc func buttonTapped(sender:UIButton){
-        print(sender.tag)
+        sender1 = sender.tag
+        //print(sender.tag)
         //まずは、同じstororyboard内であることをここで定義します
         let storyboard: UIStoryboard = self.storyboard!
         //ここで移動先のstoryboardを選択(今回の場合は先ほどsecondと名付けたのでそれを書きます)
@@ -146,6 +202,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 */
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("第\(indexPath.section)セクションの\(indexPath.row)番セルが選択されました")
+        
     }
 
 /*
@@ -153,6 +210,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 */
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         if UserDefaults.standard.object(forKey: "sectionTitles") != nil {
             contents = UserDefaults.standard.object(forKey: "sectionTitles") as! [String]
         }

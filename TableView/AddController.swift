@@ -25,7 +25,7 @@ class AddController: UIViewController {
         
         //セクションの数を１つ増やす。
         sectionNum += 1
-        
+        cellList.append([])
         //変数の中身をUDに追加 アプリを落としても記憶する
         UserDefaults.standard.set(sectionTitles, forKey: "sctionTitles" )
     }

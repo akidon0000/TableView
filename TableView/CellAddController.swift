@@ -9,14 +9,15 @@
 import UIKit
 var cellList:[[String]] = []
 var cellNum:Int = 0
+var sender1:Int = 0
 
 class CellAddController: UIViewController {
     
     @IBOutlet weak var cellTextView: UITextField!
     
     @IBAction func Button(_ sender: Any) {
-        cellList.append([])
-        cellList[0].append(cellTextView.text!)
+        //cellList.append([])
+        cellList[sender1].append(cellTextView.text!)
         
         //追加ボタンを押したらフィールドを空にする
         cellTextView.text = ""
