@@ -1,9 +1,9 @@
 //
 //  SceneDelegate.swift
-//  TableView
+//  TableViewStudy
 //
-//  Created by USER on 2019/12/28.
-//  Copyright © 2019 Akidon. All rights reserved.
+//  Created by USER on 2020/01/07.
+//  Copyright © 2020 Akidon. All rights reserved.
 //
 
 import UIKit

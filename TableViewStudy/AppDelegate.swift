@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  TableView
+//  TableViewStudy
 //
-//  Created by USER on 2019/12/28.
-//  Copyright © 2019 Akidon. All rights reserved.
+//  Created by USER on 2020/01/07.
+//  Copyright © 2020 Akidon. All rights reserved.
 //
 
 import UIKit
@@ -31,7 +31,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
-
-
 }
-
