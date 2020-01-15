@@ -4,7 +4,8 @@
 //
 //  Created by USER on 2020/01/07.
 //  Copyright © 2020 Akidon. All rights reserved.
-//
+//リロードしてるのに削除が反映されない
+//表示非表示
 
 import UIKit
 //２次元配列　セルの内容が入る
@@ -25,7 +26,19 @@ var indexPath_section:Int = 0
 var indexPath_row:Int = 0
 
 var aaa = true
+
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let appDomain = Bundle.main.bundleIdentifier
+        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
+        
+        if UserDefaults.standard.array(forKey: "sectionTitles") != nil{
+            sectionTitles = UserDefaults.standard.array(forKey: "sectionTitles") as! [String]
+            sectionNum = sectionTitles.count
+        }
+    }
+    
     let editButton = UIButton() //
     
     @IBOutlet weak var TableView: UITableView!
@@ -40,11 +53,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @IBAction func Editer(_ sender: Any) {
         if aaa == true{
             TableView.setEditing(true, animated: true)
+            editButton.isHidden = false
+            
             aaa = false
         } else {
             TableView.setEditing(false, animated: true)
+            editButton.isHidden = true
             aaa = true
         }
+        TableView.reloadData()
+        
     }
 
     /*
@@ -104,10 +122,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         button.tag = section //ボタンにタグをつける
         //追加ボタンがタップされた際に画面遷移をする(buttonTappedはタップされた際に呼び出される関数)
         button.addTarget(self, action: #selector(ViewController.buttonTapped(sender:)), for: .touchUpInside)
+        
+        //編集モード時削除ボタンを表示
+        let editButton = UIButton(frame: CGRect(x:0, y:0, width:50, height: 50))
+        editButton.backgroundColor = UIColor.black
+        editButton.setTitle("削除", for: .normal)
+        editButton.tag = section //ボタンにタグをつける
+        editButton.addTarget(self, action: #selector(ViewController.editTapped(sender:)), for: .touchUpInside)
+        
+        
         //セクションバーの上にあるviewに加える 階層として sectionBar > view > label = button
         view.addSubview(label)
         view.addSubview(button)
+        view.addSubview(editButton)
+        //editButtonを非表示にする(Trueで非表示), isEdi
+        editButton.isHidden = !tableView.isEditing
         return view
+        
     }
     @objc func buttonTapped(sender:UIButton){
         indexPath_section = sender.tag
@@ -119,6 +150,20 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.present(second, animated: true, completion: nil)
     }
     
+    @objc func editTapped(sender:UIButton){
+        indexPath_section = sender.tag
+        let alert = UIAlertController(title: "削除しますか？",message: "",preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "いいえ",style: UIAlertAction.Style.cancel,handler: nil))
+        alert.addAction(UIAlertAction(title: "はい",style: UIAlertAction.Style.default) { _ in
+            sectionTitles.remove(at: indexPath_section)
+            cellList.remove(at: indexPath_section)
+            self.TableView.reloadData()
+        })
+        
+        TableView.reloadData()
+        self.present(alert, animated: true, completion: nil)
+    }
+        
     //セルがタップされた時、画面遷移する
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         indexPath_section = indexPath.section
@@ -143,14 +188,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        let appDomain = Bundle.main.bundleIdentifier
-        UserDefaults.standard.removePersistentDomain(forName: appDomain!)
-        
-        if UserDefaults.standard.array(forKey: "sectionTitles") != nil{
-            sectionTitles = UserDefaults.standard.array(forKey: "sectionTitles") as! [String]
-            sectionNum = sectionTitles.count
-        }
-    }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
